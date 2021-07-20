@@ -27,7 +27,7 @@ protected:
   emp::Ptr<SymConfigBase> my_config = NULL;
 
 public:
-  Symbiont(emp::Ptr<emp::Random> _random, emp::Ptr<SymWorld> _world, emp::Ptr<SymConfigBase> _config, double _intval=0.0, double _points = 0.0) :  interaction_val(_intval), points(_points), random(_random), my_world(_world), my_config(_config) {
+  Symbiont(emp::Ptr<emp::Random> _random, emp::Ptr<SymWorld> _world, emp::Ptr<SymConfigBase> _config, double _intval=0.0, double _points = 0.0 ) :  interaction_val(_intval), points(_points), random(_random), my_world(_world), my_config(_config) {
     sym_h_res = my_config->SYM_HORIZ_TRANS_RES();
     h_trans = my_config->HORIZ_TRANS();
     mut_rate = my_config->MUTATION_RATE();
@@ -77,7 +77,6 @@ public:
   void AddPoints(double _in) { points += _in;}
   void SetHost(emp::Ptr<Organism> _in) {my_host = _in;}
 
-
   //void SetResTypes(std::set<int> _in) {res_types = _in;}
 
   void uponInjection(){
@@ -104,6 +103,7 @@ public:
       if(interaction_val < -1) interaction_val = -1;
       else if (interaction_val > 1) interaction_val = 1;
     }
+    
   }
 
   double ProcessResources(double sym_piece){
@@ -117,7 +117,7 @@ public:
     double symPortion = 0.0;
     double symReturn = 0.0;
     double bonus = my_config->SYNERGY();
-
+    
     if (hostIntVal >= 0 && symIntVal >= 0){ //mutualistic relationship
       hostDonation = sym_piece * hostIntVal;
       hostPortion = sym_piece - hostDonation;
@@ -165,6 +165,7 @@ public:
     this->AddPoints(symPortion);
     return hostPortion;
   }
+
 
   void Process(size_t location) {
     if (my_host.IsNull() && my_config->FREE_LIVING_SYMS()) {

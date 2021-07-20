@@ -212,7 +212,7 @@ public:
     auto & node2 = GetCountHostedSymsDataNode();
     auto & node3 = GetCountFreeSymsDataNode();
     auto & node4 = GetSggDataNode();
-    node.SetupBins(0, 1.1, 11); //Necessary because range exclusive
+    node4.SetupBins(0, 1.1, 11); //Necessary because range exclusive
     file.AddVar(update, "update", "Update");
     file.AddTotal(node1, "count", "Total number of symbionts");
     file.AddTotal(node2, "hosted_syms", "Total number of syms in a host");
